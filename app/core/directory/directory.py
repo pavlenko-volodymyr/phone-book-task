@@ -18,7 +18,7 @@ def update_directory(query, params):
         item = update(Directory).where(**params).values(**query)
         session.execute(item)
         session.commit()
-        return True
+        return 'Updated'
     except Exception:
         return False
 
@@ -28,6 +28,6 @@ def delete_directories(query):
         directories = Directory.query.filter(**query).all()
         session.delete(directories)
         session.commit()
-        return True
+        return 'Deleted'
     except Exception:
         return False
