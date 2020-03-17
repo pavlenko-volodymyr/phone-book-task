@@ -14,10 +14,10 @@ There must be a `/directory` resource representing a phone book and it's possibl
 - Delete existing items
 It should support query argument: `district` to filter response by name of the district in which a person lives.
 Items is consisting of the following fields:
-`First name`
-`Last name`
-`Phone number`
-`Address`
+- `First name`
+- `Last name`
+- `Phone number`
+- `Address`
 
 Bonus
 -----
