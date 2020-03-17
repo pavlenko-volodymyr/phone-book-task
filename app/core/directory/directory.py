@@ -21,3 +21,13 @@ def update_directory(query, params):
         return True
     except Exception:
         return False
+
+
+def delete_directories(query):
+    try:
+        directories = Directory.query.filter(**query).all()
+        session.delete(directories)
+        session.commit()
+        return True
+    except Exception:
+        return False

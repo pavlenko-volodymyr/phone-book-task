@@ -21,3 +21,6 @@ update_directory_parser.add_argument('last_name', type=str, required=False)
 update_directory_parser.add_argument('phone_number', type=str, required=False)
 update_directory_parser.add_argument('address', type=str, required=False)
 update_directory_parser.add_argument('district', type=str, required=False)
+
+delete_directory_parser = RequestParser()
+delete_directory_parser.add_argument('district', type=str, required=True, location='args')
