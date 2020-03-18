@@ -3,8 +3,22 @@ from town_phone_book import db
 from town_phone_book.models import Directory
 
 
-def get_arg_parser(action='post'):
+def get_directories(kwargs):
+    directories = list()
+    district_name = kwargs.pop('district', None)
+
+    for directory in Directory.query.filter_by(district=district_name).all():
+        directories.append(directory.serialize)
+
+    return directories
+
+
+def get_arg_parser(action='get'):
     parser = reqparse.RequestParser()
+
+    if action == 'get':
+        parser.add_argument("district", type=str, required=True)
+
     if action in ('put', 'delete'):
         parser.add_argument("id", type=int, required=True)
 

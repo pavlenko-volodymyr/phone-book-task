@@ -13,3 +13,14 @@ class Directory(db.Model):
 
     def __repr__(self):
         return f'<Directory {self.id}>'
+
+    @property
+    def serialize(self):
+        return {
+            'id': self.id,
+            'district': self.district,
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'phone_number': self.phone_number,
+            'address': self.address,
+        }

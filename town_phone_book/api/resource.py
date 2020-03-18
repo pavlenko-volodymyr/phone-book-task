@@ -1,11 +1,16 @@
+from flask import jsonify
 from flask_restful import Resource
-
-from .functions import get_arg_parser, create_new_directory, update_directory, delete_directory
+from .functions import get_arg_parser, create_new_directory, update_directory, delete_directory, get_directories
 
 
 class DirectoryResource(Resource):
     def get(self):
-        return 404
+        parser = get_arg_parser(action='get')
+        params = parser.parse_args()
+
+        directories = get_directories(params)
+
+        return jsonify(directories)
 
     def post(self):
         parser = get_arg_parser(action='post')
