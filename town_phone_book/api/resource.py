@@ -1,6 +1,6 @@
-from flask_restful import Resource, reqparse
-from town_phone_book import db
-from town_phone_book.models import Directory
+from flask_restful import Resource
+
+from .functions import get_arg_parser, create_new_directory
 
 
 class DirectoryResource(Resource):
@@ -8,20 +8,13 @@ class DirectoryResource(Resource):
         return 404
 
     def post(self):
-        parser = reqparse.RequestParser()
-        parser.add_argument("district", type=str, required=True)
-        parser.add_argument("first_name", type=str, required=True)
-        parser.add_argument("last_name", type=str, required=True)
-        parser.add_argument("phone_number", type=str, required=True)
-        parser.add_argument("address", type=str, required=True)
-
+        parser = get_arg_parser()
         params = parser.parse_args()
-        try:
-            new_directory = Directory(**params)
-            db.session.add(new_directory)
-            db.session.commit()
-        except Exception as e:
-            return None, 500
 
-        return '', 201
+        new_directory = create_new_directory(params)
+
+        if new_directory:
+            return '', 201
+        else:
+            return '', 500
 
