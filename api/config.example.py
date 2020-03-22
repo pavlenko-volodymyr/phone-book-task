@@ -1,0 +1,2 @@
+SQLALCHEMY_DATABASE_URI='postgresql://api:root@db/phone_books'
+SQLALCHEMY_TRACK_MODIFICATIONS=False
